@@ -42,8 +42,9 @@ static void simple_mul(Mul_state& state) {
   double secs = duration.count();
   auto tacts = tact_end - tact_start;
   double IPC = operations*instructions_per_operation/tacts;
-  double IPS = IPC*(tacts/secs);
-  Line_state line_state {operations, secs, operations/secs, tacts, tacts/secs, IPC, IPS, value1};
+  double IPS = IPC*(tacts/(secs*1E9));
+  double pace = static_cast<double>(operations)/tacts;
+  Line_state line_state {operations, secs, operations/(secs*1E9), tacts, tacts/(secs*1E9), pace, IPC, IPS, value1};
   std::cout << line_state;
   
 }
@@ -70,8 +71,9 @@ static void sse_mul(Mul_state& state) {
   double secs = duration.count();
   auto tacts = tact_end - tact_start;
   double IPC = operations*instructions_per_operation/tacts;
-  double IPS = IPC*(tacts/secs);
-  Line_state line_state {operations, secs, operations/secs, tacts, tacts/secs, IPC, IPS, res};
+  double IPS = IPC*(tacts/(secs*1E9));
+  double pace = static_cast<double>(operations)/tacts;
+  Line_state line_state {operations, secs, operations/(secs*1E9), tacts, tacts/(secs*1E9), pace, IPC, IPS, res};
   std::cout << line_state;
   
 }

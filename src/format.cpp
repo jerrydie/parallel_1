@@ -1,6 +1,6 @@
 #include "format.hpp"
-#define CELL_WIDTH 25
-#define COL_NUM 8
+#define CELL_WIDTH 20
+#define COL_NUM 9
 #include <iostream>
 
 namespace hse::parallel::lab1
@@ -27,11 +27,12 @@ namespace hse::parallel::lab1
 	{
 		return  '|' + make_cell("OPERATIONS")+
 			'|' + make_cell("TIME")+ 
-			'|' + make_cell("OPERATIONS / SECOND")+
+			'|' + make_cell("GFLOPS")+
 			'|' + make_cell("PROCESSOR CLOCKS")+
-			'|' + make_cell("PROCESSOR CLOCKS / SECOND") +
+			'|' + make_cell("CLOCK RATE, GHz") +
+			'|' + make_cell("PACE") +
 			'|' + make_cell("IPC") +
-			'|' + make_cell("IPS") +
+			'|' + make_cell("IPS, 10^9") +
 			'|' + make_cell("OPERATION RESULT")+ "|\n" + make_break();
 	}
 	
@@ -43,6 +44,7 @@ namespace hse::parallel::lab1
 				  <<  make_cell(std::to_string(line.ops_per_sec))<< '|'
 				  <<  make_cell(std::to_string(line.tact_duration))<< '|'
 				  <<  make_cell(std::to_string(line.tacts_per_sec))<< '|'
+				  <<  make_cell(std::to_string(line.pace))<< '|'
 				  <<  make_cell(std::to_string(line.IPC))<< '|'
 				  <<  make_cell(std::to_string(line.IPS))<< '|'
 				  <<  make_cell(std::to_string(line.result)) << "|\n";

@@ -18,6 +18,7 @@ namespace hse::parallel::lab1
 		double ops_per_sec;
 		std::uint64_t tact_duration;
 		double tacts_per_sec;
+		double pace;
 		double IPC;
 		double IPS;
 		std::int32_t result;
