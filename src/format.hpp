@@ -21,6 +21,7 @@ namespace hse::parallel::lab1
 		double ops_per_sec;
 		std::uint64_t tact_duration;
 		double tacts_per_sec;
+		//double result[4];
 		friend std::ostream& operator <<(std::ostream& os, Line_state const& line);
 	};
 }

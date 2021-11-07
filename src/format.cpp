@@ -31,7 +31,8 @@ namespace hse::parallel::lab1
 			'|' + make_cell("TIME")+ 
 			'|' + make_cell("OPERATIONS / SECOND")+
 			'|' + make_cell("PROCESSOR CLOCKS")+
-			'|' + make_cell("PROCESSOR CLOCKS / SECOND") + "|\n" + make_break();
+			'|' + make_cell("PROCESSOR CLOCKS / SECOND") +
+			/*'|' + make_cell("OPERATION RESULT")+*/ "|\n" + make_break();
 	}
 	
 	std::ostream& operator <<(std::ostream& os, Line_state const& line)
@@ -40,7 +41,8 @@ namespace hse::parallel::lab1
 				  <<  make_cell(std::to_string(line.secs))<< '|'
 				  <<  make_cell(std::to_string(line.ops_per_sec))<< '|'
 				  <<  make_cell(std::to_string(line.tact_duration))<< '|'
-				  <<  make_cell(std::to_string(line.tacts_per_sec))<< "|\n"
+				  <<  make_cell(std::to_string(line.tacts_per_sec))//<< '|'
+				  /*<<  make_cell(std::to_string(line.result))*/ << "|\n"
 				  << make_break();
 		    }
 
