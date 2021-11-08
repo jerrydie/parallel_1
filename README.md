@@ -168,7 +168,7 @@ cmd: ./test.o
 ## Исходная программа без оптимизации:
 
 Функция интегрирования:
-```
+```C++
 double simpsonIntegral(double a, double b, std::size_t n, const std::function<double (double)> &f) {
 	    const double width = (b-a)/n;
 
@@ -283,7 +283,7 @@ Type upper integration limit b: 3
 Наилучшую производительность показывают опции `-O2` и `-O3`.
 
 ## Полуавтоматическая векторизация
-```
+```C++
 double simpsonIntegral(double a, double b, std::size_t n, const std::function<double (double)> &f) {
 	    const double width = (b-a)/n;
 
@@ -331,7 +331,7 @@ Type upper integration limit b: 3
 
 Незначительное улучшение производительности. Добавляем ручную векторизацию:
 
-```
+```C++
 double simpsonIntegral(double a, double b, std::size_t n, const std::function<double (double)> &f) {
 	    const double width = (b-a)/n;
 	    auto g = [](double x1, double x2, const std::function<double (double)> &f_)->double{ return (x2-x1)/6.0*(f_(x1) + 4.0*f_(0.5*(x1+x2)) + f_(x2)); };
@@ -387,7 +387,7 @@ Type upper integration limit b: 3
 
 ## Полуавтоматическое распараллеливание
 
-```
+```C++
 double simpsonIntegral(double a, double b, std::size_t n, const std::function<double (double)> &f) {
 	    const double width = (b-a)/n;
 
@@ -436,7 +436,7 @@ Type upper integration limit b: 3
 
 Наблюдается ухудшение производительности.
 
-```
+```C++
 	double simpsonIntegral(double a, double b, std::size_t n, const std::function<double (double)> &f) {
 	    const double width = (b-a)/n;
 	    auto g = [](double x1, double x2, const std::function<double (double)> &f_)->double{ return (x2-x1)/6.0*(f_(x1) + 4.0*f_(0.5*(x1+x2)) + f_(x2)); };
@@ -494,7 +494,7 @@ Type upper integration limit b: 3
 Наблюдается ухудшение производительности.
 
 ## Векторизация через интринзики
-```
+```C++
 	double simpsonIntegral(double a, double b, std::size_t n, const std::function<double (double)> &f) {
 	    const double width = (b-a)/n;
 	    auto g = [](double x1, double x2, const std::function<double (double)> &f_)->double{ return (x2-x1)/6.0*(f_(x1) + 4.0*f_(0.5*(x1+x2)) + f_(x2)); };
@@ -557,7 +557,7 @@ Type upper integration limit b: 3
 # Листинги программ на C++
 ## src/
 
-```
+```C++
 main.cpp
 
 #include <iostream>
@@ -749,7 +749,7 @@ namespace hse::parallel::lab1
 
 ## src2/
 
-```
+```C++
 main.cpp:
 
 #include <iostream>
