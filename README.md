@@ -56,9 +56,9 @@ cmd: lscpu output
 ## Компиляция и создание ассемблерного листинга из исполняемого файла
 
 ```bash
-cmd: cd project_folder/src
-cmd: g++ main.cpp format.cpp -g -O0 -march=native -o test.o
-cmd: objdump -S test.o > asm.asm
+cd project_folder/src
+g++ main.cpp format.cpp -g -O0 -march=native -o test.o
+objdump -S test.o > asm.asm
 
 ```
 
@@ -81,7 +81,7 @@ cmd: objdump -S test.o > asm.asm
 Количество инструкций в одной операции - 8.
 ### SSE4.1 MULTIPLICATION
 
-```
+```asm
   for (;iterator < operations; iterator++)
     29de:	48 8b 85 28 ff ff ff 	mov    -0xd8(%rbp),%rax
     29e5:	48 3b 85 38 ff ff ff 	cmp    -0xc8(%rbp),%rax
@@ -110,8 +110,8 @@ _mm_mullo_epi32 (__m128i __X, __m128i __Y)
 ```
 Количество инструкций в одной операции - 14.
 ## Результат измерений производитеьлности
-```
-cmd: ./test.o
+```bash
+./test.o
 ```
 
 ### SIMPLE MULTIPLICATION
@@ -183,7 +183,7 @@ double simpsonIntegral(double a, double b, std::size_t n, const std::function<do
 	    return simpson_integral;
 	}
 ```
-```
+```bash
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ g++ main.cpp format.cpp -g -O0 -march=native -o test.o
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ ./test.o
 Type lower integration limit a: 1
@@ -199,7 +199,7 @@ Type upper integration limit b: 3
 |      1000000       |      0.158018      |   6328409.788329   |     443705464      |     73.066667      |
 
 ## Исходная программа, оптимизированная только с помощью ключей компилятора
-```
+```bash
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ g++ main.cpp format.cpp -g -Os -march=native -o test.o
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ ./test.o
 Type lower integration limit a: 1
@@ -214,7 +214,7 @@ Type upper integration limit b: 3
 |       100000       |      0.006958      |  14371163.168893   |      19536556      |     73.066667      |
 |      1000000       |      0.107312      |   9318583.084841   |     301325743      |     73.066667      |
 
-```
+```bash
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ g++ main.cpp format.cpp -g -O1 -march=native -o test.o
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ ./test.o
 Type lower integration limit a: 1
@@ -230,7 +230,7 @@ Type upper integration limit b: 3
 |       100000       |      0.006961      |  14365355.818371   |      19544941      |     73.066667      |
 |      1000000       |      0.063272      |  15804705.927052   |     177610099      |     73.066667      |
 
-```
+```bash
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ g++ main.cpp format.cpp -g -O2 -march=native -o test.o
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ ./test.o
 Type lower integration limit a: 1
@@ -248,7 +248,7 @@ Type upper integration limit b: 3
 
 
 
-```
+```bash
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ g++ main.cpp format.cpp -g -O3 -march=native -o test.o
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ ./test.o
 Type lower integration limit a: 1
@@ -264,7 +264,7 @@ Type upper integration limit b: 3
 |       100000       |      0.004529      |  22078267.015003   |      12717010      |     73.066667      |
 |      1000000       |      0.082843      |  12070966.758658   |     232608146      |     73.066667      |
 
-```
+```bash
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ g++ main.cpp format.cpp -g -Ofast -march=native -o test.o
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ ./test.o
 Type lower integration limit a: 1
@@ -299,7 +299,7 @@ double simpsonIntegral(double a, double b, std::size_t n, const std::function<do
 	    return simpson_integral;
 	}
 ```
-```
+```bash
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ g++ main_pragma.cpp format.cpp -g -O2 -march=native -o test.o -fopenmp
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ ./test.o
 Type lower integration limit a: 1
@@ -314,7 +314,7 @@ Type upper integration limit b: 3
 |       100000       |      0.004940      |  20244144.381238   |      13868058      |     73.066667      |
 |      1000000       |      0.052951      |  18885366.767987   |     148678439      |     73.066667      |
 
-```
+```bash
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ g++ main_pragma.cpp format.cpp -g -O3 -march=native -o test.o -fopenmp
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ ./test.o
 Type lower integration limit a: 1
@@ -352,7 +352,7 @@ double simpsonIntegral(double a, double b, std::size_t n, const std::function<do
 	    return simpson_integral;
 	}
 ```
-```
+```bash
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ g++ main_pragma.cpp format.cpp -g -O2 -march=native -o test.o -fopenmp
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ ./test.o
 Type lower integration limit a: 1
@@ -368,7 +368,7 @@ Type upper integration limit b: 3
 |       100000       |      0.003887      |  25724994.662064   |      10912740      |     73.066667      |
 |      1000000       |      0.052204      |  19155745.752529   |     146581901      |     73.066667      |
 
-```
+```bash
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ g++ main_pragma.cpp format.cpp -g -O3 -march=native -o test.o -fopenmp
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ ./test.o
 Type lower integration limit a: 1
@@ -404,7 +404,7 @@ double simpsonIntegral(double a, double b, std::size_t n, const std::function<do
 	    return simpson_integral;
 	}
 ```
-```
+```bash
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ g++ main_pragma.cpp format.cpp -g -O2 -march=native -o test.o -fopenmp
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ ./test.o
 Type lower integration limit a: 1
@@ -419,7 +419,7 @@ Type upper integration limit b: 3
 |       100000       |      0.004294      |  23285744.257794   |      12055912      |     73.066667      |
 |      1000000       |      0.071290      |  14027143.729451   |     200177206      |     73.066667      |
 
-```
+```bash
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ g++ main_pragma.cpp format.cpp -g -O3 -march=native -o test.o -fopenmp
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ ./test.o
 Type lower integration limit a: 1
@@ -460,7 +460,7 @@ Type upper integration limit b: 3
 ```
 
 
-```
+```bash
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ g++ main_pragma.cpp format.cpp -g -O2 -march=native -o test.o -fopenmp
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ ./test.o
 Type lower integration limit a: 1
@@ -476,7 +476,7 @@ Type upper integration limit b: 3
 |       100000       |      0.005232      |  19113295.973211   |      14689624      |     73.066667      |
 |      1000000       |      0.075299      |  13280476.329251   |     211433395      |     73.066667      |
 
-```
+```bash
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ g++ main_pragma.cpp format.cpp -g -O3 -march=native -o test.o -fopenmp
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ ./test.o
 Type lower integration limit a: 1
@@ -517,7 +517,7 @@ Type upper integration limit b: 3
 	}
 ```
 
-```
+```bash
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ g++ main_pragma.cpp format.cpp -g -O2 -march=native -o test.o -fopenmp
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ ./test.o
 Type lower integration limit a: 1
@@ -533,7 +533,7 @@ Type upper integration limit b: 3
 |      1000000       |      0.078625      |  12718545.469493   |     220774020      |     73.066667      |
 
 
-```
+```bash
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ g++ main_pragma.cpp format.cpp -g -O3 -march=native -o test.o -fopenmp
 polina@polina-VirtualBox:~/Prog/parallel_1/src2$ ./test.o
 Type lower integration limit a: 1
