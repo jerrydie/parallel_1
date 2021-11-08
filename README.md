@@ -55,7 +55,7 @@ cmd: lscpu output
 
 ## Компиляция и создание ассемблерного листинга из исполняемого файла
 
-```
+```bash
 cmd: cd project_folder/src
 cmd: g++ main.cpp format.cpp -g -O0 -march=native -o test.o
 cmd: objdump -S test.o > asm.asm
@@ -65,7 +65,7 @@ cmd: objdump -S test.o > asm.asm
 ## Фрагменты ассемблерного кода с замеряемыми циклами
 
 ### SIMPLE MULTIPLICATION
-```
+```asm
   for (;iterator < operations; iterator++)
     2691:	48 8b 85 68 ff ff ff 	mov    -0x98(%rbp),%rax
     2698:	48 3b 85 78 ff ff ff 	cmp    -0x88(%rbp),%rax
